@@ -14,9 +14,10 @@ body {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 90%;
-    max-width: 400px;
+    max-width: 500px;
     padding: 20px;
     text-align: center;
+    overflow: hidden; /* Garante que o conteúdo não ultrapasse os limites da div */
 }
 
 h1 {
@@ -32,7 +33,7 @@ h1 {
 }
 
 .tab-link {
-    flex-grow: 1;
+    flex: 1 1 auto;
     padding: 10px;
     border: none;
     background-color: #007bff;
@@ -40,6 +41,7 @@ h1 {
     cursor: pointer;
     text-align: center;
     border-radius: 4px;
+    font-size: 16px;
 }
 
 .tab-link:hover {
@@ -53,14 +55,16 @@ h1 {
 .input-group {
     margin-bottom: 20px;
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
 }
 
 input[type="text"] {
-    flex-grow: 1;
+    flex: 1 1 auto;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
+    box-sizing: border-box; /* Inclui padding e border na largura total */
 }
 
 button {
@@ -79,19 +83,23 @@ button:hover {
 ul {
     list-style-type: none;
     padding: 0;
+    margin: 0;
 }
 
 li {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr auto auto;
     align-items: center;
     padding: 10px;
     border-bottom: 1px solid #ddd;
+    gap: 15px;
+    word-break: break-word; /* Quebra o texto longo para evitar overflow */
+    box-sizing: border-box; /* Inclui padding e border na largura total */
 }
 
-li.completed {
-    text-decoration: line-through;
-    color: #aaa;
+.task-description {
+    margin-right: 10px;
+    overflow-wrap: break-word; /* Quebra palavras longas para evitar overflow */
 }
 
 button.remove-btn {
@@ -109,7 +117,6 @@ button.remove-btn:hover {
     }
 
     .tab-link {
-        flex-grow: 1;
         font-size: 14px;
     }
 
@@ -124,5 +131,26 @@ button.remove-btn:hover {
     button {
         width: 100%;
         margin-top: 10px;
+    }
+
+    ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 0; /* Remove o padding extra */
+        margin: 0; /* Remove a margem extra */
+    }
+
+    li {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: flex-start;
+        gap: 10px;
+        word-break: break-word; /* Quebra o texto longo para evitar overflow */
+    }
+
+    .task-description {
+        margin-right: 0;
     }
 }
